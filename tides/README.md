@@ -57,13 +57,16 @@ coordinate-independent way.
 From the repository root, execute:
 
 ```bash
-python -m tides.scripts.02_run
+git clone https://github.com/dmitrylife/psi-continuum-experiments.git
+cd psi-continuum-experiments
+python3 -m venv sci_venv
+source sci_venv/bin/activate
+pip install -r requirements.txt
 ```
 
-Requirements:
-
-- Python ≥ 3.10
-- numpy, pandas, matplotlib
+```bash
+python -m tides.scripts.02_run
+```
 
 The script reads raw data from:
 
