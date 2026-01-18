@@ -54,8 +54,6 @@ coordinate-independent way.
 
 ## How to run
 
-From the repository root, execute:
-
 ```bash
 git clone https://github.com/dmitrylife/psi-continuum-experiments.git
 cd psi-continuum-experiments
@@ -63,6 +61,8 @@ python3 -m venv sci_venv
 source sci_venv/bin/activate
 pip install -r requirements.txt
 ```
+
+From the repository root, execute:
 
 ```bash
 python -m tides.scripts.02_run
