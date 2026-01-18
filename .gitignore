@@ -1,0 +1,31 @@
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+
+# --- Virtual environments ---
+venv/
+sci_venv/
+.env/
+.venv/
+
+# Generated figures
+*.csv
+*.json
+
+# --- Logs ---
+*.log
+
+# --- System / Editor files ---
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Data products
+tides/data/raw/*
+tides/data/processed/*
+tides/figures/*
+tides/results/*
