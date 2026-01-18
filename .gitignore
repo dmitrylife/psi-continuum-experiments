@@ -11,10 +11,6 @@ sci_venv/
 .env/
 .venv/
 
-# Generated figures
-*.csv
-*.json
-
 # --- Logs ---
 *.log
 
@@ -24,8 +20,10 @@ sci_venv/
 .vscode/
 *.swp
 
-# Data products
-tides/data/raw/*
+# --- Data products (general) ---
+*.csv
+*.json
+
+# --- Processed / derived data ---
 tides/data/processed/*
-tides/figures/*
 tides/results/*
