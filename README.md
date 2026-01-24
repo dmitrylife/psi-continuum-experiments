@@ -19,6 +19,12 @@ and state-space description across different macroscopic systems.
 The first experiment focuses on tidal dynamics as a clean and physically
 transparent proof of concept.
 
+## Repository status
+
+This repository is intended as a growing collection of diagnostic
+experiments. New macroscopic systems and datasets will be added as the
+framework is extended and tested.
+
 ## Experiments
 
 This repository includes a set of macroscopic, data-driven experiments
