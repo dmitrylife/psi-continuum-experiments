@@ -1,5 +1,7 @@
 # psi-continuum-experiments
 
+> **Companion demonstrations (ongoing)**
+
 This repository collects macroscopic experiments illustrating the
 Psi-Continuum response framework.
 
