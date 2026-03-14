@@ -27,3 +27,8 @@ sci_venv/
 # --- Processed / derived data ---
 tides/data/processed/*
 tides/results/*
+
+# Pipeline artifacts
+tides/artifacts/
+tides/results/metrics.csv
+

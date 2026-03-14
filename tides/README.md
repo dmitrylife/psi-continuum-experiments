@@ -1,117 +1,200 @@
-# Tidal dynamics experiment
+# Tidal Dynamics Experiment
 
-This experiment uses tidal sea-level data as an illustrative macroscopic
-system for the Psi-Continuum framework.
+This experiment uses tidal sea-level observations as a clean macroscopic system  
+for illustrating the **Ψ-Continuum response framework**.
 
-Tides provide a physically transparent example of a global system
-response: the ocean reacts to an external gravitational driver
-(Lunar/Solar tidal potential) with phase delay, dissipation, and
-geometry-dependent amplification, rather than through local forces.
+Tides provide a physically transparent example of a global system response.  
+The ocean reacts to external gravitational forcing (Lunar and Solar tidal potential)  
+through a combination of:
+
+- phase delay  
+- dissipation  
+- basin geometry  
+- nonlinear hydrodynamic effects  
+
+rather than through purely local forces.
+
+This makes tidal dynamics a useful macroscopic testbed for studying  
+how response fields emerge in real physical systems.
 
 ## Data
 
-The experiment is based on tide-gauge time series (hourly or finer),
-obtained from established observational networks such as PSMSL, NOAA,
-or equivalent national services.
+The experiment uses tide-gauge time series (hourly resolution or finer)  
+obtained from established observational networks such as:
 
-Only raw sea-level measurements are used.
-No long-term sea-level trend or climate correction is required, as the
-focus is on dynamical response modes rather than secular evolution.
+- PSMSL  
+- NOAA  
+- national oceanographic services  
 
-## Reference response
+Only **raw sea-level measurements** are used.  
+No long-term sea-level trend removal or climate corrections are applied,  
+because the analysis focuses on **dynamical response modes** rather than secular evolution.
 
-A reference equilibrium or harmonic tidal response `h_eq(t)` is
-constructed using a minimal set of dominant tidal components or a
-smoothed mean cycle.
+**Example dataset** used in the current experiment:
 
-In the current implementation, the reference response is defined
-empirically as a **mean diurnal cycle**, obtained by averaging the
-observed sea level by hour of day.
+```
+tides/data/raw/h293.dat.txt
+```
 
-This reference plays the role of an idealized, instantaneous response
-to the external tidal potential.
+## Reference Response
 
-## Diagnostic field Ψ
+The analysis requires a reference equilibrium response **h_eq(t)**  
+representing the leading tidal behavior.
 
-The diagnostic field Ψ(t) is defined as the deviation of the observed
-sea level from the reference response, normalized by a characteristic
-tidal amplitude:
+Two reference constructions are implemented:
+
+### 1. Mean diurnal cycle
+An empirical reference obtained by averaging sea level by hour of day:
+
+```
+h_eq(t) = mean sea level at hour(t)
+```
+
+
+This removes slow background variability but leaves most tidal oscillations in the residual.
+
+### 2. Harmonic reference
+A minimal harmonic tidal model including the dominant constituents:
+
+- M₂  
+- S₂  
+- K₁  
+- O₁  
+
+This model captures the primary tidal dynamics and substantially reduces the residual variance.
+
+## Diagnostic Field Ψ
+
+The diagnostic response field **Ψ(t)** is defined as:
 
 $$
 \Psi(t) = \frac{h_{\mathrm{obs}}(t) - h_{\mathrm{eq}}(t)}{A}
 $$
 
-This field captures phase shifts, dissipation, and regime changes in a
-coordinate-independent way.
+where:
 
-## Pipeline
+- $h_{\mathrm{obs}}(t)$ — observed sea level  
+- $h_{\mathrm{eq}}(t)$ — reference response  
+- $A$ — characteristic tidal amplitude  
 
-1. Load raw tide-gauge data
-2. Construct reference response `h_eq(t)`
-3. Compute diagnostic field `Ψ(t)`
-4. Analyze trajectories in time and state space
-5. Produce reproducible figures and summary metrics
+The field **Ψ(t)** represents the normalized deviation of the system from its reference response.  
+It compactly captures effects such as:
 
-## How to run
+- phase shifts  
+- dissipation  
+- nonlinear hydrodynamic response  
+- unresolved forcing  
+
+in a coordinate-independent form.
+
+## Analysis Pipeline
+
+The experiment is implemented as a reproducible data pipeline. Steps:
+
+1. Load raw tide-gauge observations  
+2. Construct reference response **h_eq(t)**  
+3. Compute diagnostic field **Ψ(t)**  
+4. Analyze trajectories in time and state space  
+5. Compute diagnostic metrics  
+6. Generate reproducible figures  
+
+Implementation:
+
+- Main pipeline logic: `tides/src/pipeline.py`  
+- Execution scripts: `tides/scripts/`
+
+## Running the Experiment
 
 ```bash
+# Clone repository
 git clone https://github.com/dmitrylife/psi-continuum-experiments.git
 cd psi-continuum-experiments
+
+# Create and activate virtual environment
 python3 -m venv sci_venv
 source sci_venv/bin/activate
+
+# Install dependencies
 pip install -r requirements.txt
-```
 
-From the repository root, execute:
-
-```bash
+# Run the tidal experiment
 python -m tides.scripts.02_run
 ```
 
-The script reads raw data from:
-
-```text
-tides/data/raw/h293.dat.txt
-```
-
-which follows a standard hourly tide-gauge format with intra-day phase segmentation.
-
 ## Outputs
 
-After execution, the following figures are generated in:
+Results are written to:
 
 ```
-tides/figures/
+tides/artifacts/
 ```
 
-## Reference response
+For each station and each time window, the pipeline creates:
 
 ```
-heq_diurnal_cycle.png
+tides/artifacts/<station>/<window>/
 ```
 
-This figure shows the empirically reconstructed mean diurnal tidal
-cycle, serving as the reference response h_eq(t).
+containing:
 
-## Diagnostic field
+- `figures/`
+- `results/`
+
+### Figures
+
+#### Reference response
+- `heq_diurnal_cycle.png`
+- `heq_timeseries.png`
+
+#### Diagnostic field
+- `psi_tides.png`
+
+#### State-space diagnostics
+- `psi_state_space.png`
+- `psi_state_space_density.png`
+
+#### Phase diagnostics
+- `psi_vs_phase.png`
+- `psi_vs_phase_binned.png`
+
+#### Velocity diagnostics
+- `psi_vs_dheqdt.png`
+- `psi_vs_dheqdt_binned.png`
+
+These plots illustrate the structure of the residual response field  
+relative to tidal phase and reference velocity.
+
+## Results Summary
+
+A concise summary of the current experiment results is available in:
 
 ```
-psi_tides.png
+tides/results/summary.md
 ```
 
-This figure shows the diagnostic field `Ψ(t)` for the first days of the
-time series. The resulting trajectories exhibit coherent oscillatory
-structure and amplitude modulation, demonstrating that
-acceleration-like behavior can arise as a **global response mode** of a
-macroscopic dissipative system, without invoking additional forces.
+This document reports:
 
-## Purpose
+- residual statistics  
+- diagnostic plots  
+- interpretation of the **Ψ** response field
 
-The tidal experiment serves as a proof of concept for the
-Psi-Continuum framework, illustrating how a suitable state-space
-diagnostic separates reference behavior from response-induced structure
+## Purpose of the Experiment
+
+The tidal system serves as a macroscopic **proof-of-concept** for the **Ψ-Continuum framework**.
+
+The goal is to demonstrate how a suitably chosen diagnostic field can cleanly separate:
+
+**reference behavior**  
+vs  
+**system response**
+
 in real observational data.
 
-In this sense, the tidal system provides a controlled macroscopic example
-of how acceleration-like effects can emerge from response geometry and
-phase structure rather than from additional dynamical components.
+In this sense, tidal dynamics provide a controlled example of how acceleration-like behavior can emerge from:
+
+- response geometry  
+- phase structure  
+- dissipation  
+
+without introducing additional forces or microscopic modifications to the governing dynamics.
+
