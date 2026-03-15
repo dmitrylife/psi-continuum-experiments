@@ -52,6 +52,8 @@ because the analysis focuses on dynamical response modes of the system.
 tides/data/raw/h293.dat.txt
 ```
 
+[Source: University of Hawaii Sea Level Study Center (UHSLC)](https://uhslc.soest.hawaii.edu/data/?referrer=grok.com)
+
 ---
 
 ## Reference Response
@@ -148,7 +150,7 @@ source sci_venv/bin/activate
 # Install dependencies
 pip install -r requirements.txt
 
-# Run the tidal experiment
+# A Simple Demonstration
 python -m tides.scripts.02_run
 ```
 
