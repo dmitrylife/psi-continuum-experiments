@@ -132,6 +132,10 @@ Implementation:
 
 ## Running the Experiment
 
+The `02_run` script is a minimal demonstrator that executes the pipeline
+for a predefined dataset and produces example figures.
+
+
 ```bash
 # Clone repository
 git clone https://github.com/dmitrylife/psi-continuum-experiments.git
@@ -147,6 +151,69 @@ pip install -r requirements.txt
 # Run the tidal experiment
 python -m tides.scripts.02_run
 ```
+
+## Running individual scripts
+
+The experiment can also be executed step-by-step using the available scripts.
+
+### Run a single time window
+
+Compute diagnostics for a specific station and time window:
+
+```bash
+python -m tides.scripts.run \
+  --input tides/data/raw/h293.dat.txt \
+  --start 1959-01-01 \
+  --end 1959-01-31 \
+  --reference harmonic_4mode
+ ```
+ 
+Outputs will be written to:
+
+```
+tides/artifacts/<station>/<window>/
+```
+
+---
+
+### Batch processing
+
+Run the pipeline for multiple time windows defined in:
+
+```
+tides/docs/targets.csv
+```
+
+Example:
+
+```bash
+python -m tides.scripts.batch tides/docs/targets.csv --reference harmonic_4mode
+```
+
+This will execute the pipeline for each row in the targets file and
+collect diagnostic metrics.
+
+---
+
+### Analyze aggregated metrics
+
+To compute summary plots across all processed windows:
+
+```bash
+python -m tides.scripts.analyze_metrics
+```
+
+This script generates aggregated diagnostic figures in:
+
+```
+tides/results/analysis/
+```
+
+including:
+
+- psi_rms.png
+- psi_skew.png
+- A_mm.png
 
 ---
 
