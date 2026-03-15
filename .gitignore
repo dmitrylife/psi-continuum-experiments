@@ -24,11 +24,16 @@ sci_venv/
 *.csv
 *.json
 
-# --- Processed / derived data ---
-tides/data/processed/*
+
+tides/artifacts/
+tides/figures/
+
+# 1. Игнорируем всё содержимое папки results
 tides/results/*
 
-# Pipeline artifacts
-tides/artifacts/
-tides/results/metrics.csv
+# 2. Делаем исключение для файла summary.md
+!tides/results/summary.md
+
+# 3. Игнорируем вложенную папку analysis целиком (если нужно)
+tides/results/analysis/
 
