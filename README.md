@@ -1,49 +1,27 @@
 # psi-continuum-experiments
 
-## Overview
-
-This repository contains small macroscopic experiments designed to test
-the Ψ-Continuum response framework using real observational data.
-
 > **Companion demonstrations (ongoing)**
 
-This repository collects macroscopic experiments illustrating the
-**Psi-Continuum response framework**.
+This repository contains a collection of **macroscopic experiments**
+illustrating the **Psi-Continuum response framework**.
 
-The goal is to demonstrate how apparent acceleration-like or anomalous
-behavior may emerge in real physical systems as a **global response**,
-driven by geometry, phase shifts, dissipation, and system memory —
+The goal is to demonstrate how acceleration-like or anomalous behavior
+can emerge in real physical systems as a **global response**, driven by
+
+- geometry
+- phase shifts
+- dissipation
+- system memory
+
 without introducing new forces or modifying microscopic dynamics.
 
-Each experiment is based on real observational data and is implemented
-as a reproducible analysis pipeline:
+Each experiment is implemented as a reproducible pipeline:
 
-raw data → reference response → diagnostic field Ψ → state-space analysis.
+`raw data → reference response → diagnostic field Ψ → state-space diagnostics`
 
-The repository complements the Psi-Continuum cosmology releases and
-serves as a laboratory for testing the universality of the response
-description across different macroscopic systems.
-
----
-
-# Repository status
-
-This repository is intended as a **growing collection of diagnostic
-experiments**.
-
-New macroscopic systems and datasets will be added as the framework is
-extended and tested.
-
-Current experiment:
-
-- tidal dynamics (ocean tide gauge response)
-
-Future candidates may include:
-
-- atmospheric oscillations  
-- hydrological systems  
-- mechanical oscillators  
-- laboratory response experiments  
+The repository complements the **Psi-Continuum cosmology framework**
+and serves as a laboratory for testing response-based diagnostics on
+well-understood macroscopic systems.
 
 ---
 
@@ -51,8 +29,8 @@ Future candidates may include:
 
 ## Tidal dynamics (`tides/`)
 
-The `tides/` module contains a complete reproducible experiment
-analyzing **tidal response dynamics** using tide-gauge observations.
+The first experiment studies **ocean tidal response dynamics**
+using tide-gauge observations.
 
 Tides provide a clean macroscopic example of a system responding to
 external forcing (Lunar and Solar tidal potential) through
@@ -60,58 +38,67 @@ external forcing (Lunar and Solar tidal potential) through
 - phase delay
 - dissipation
 - basin geometry
-- nonlinear hydrodynamic effects
+- nonlinear hydrodynamics
 
 rather than purely local forces.
 
-### What the experiment includes
+This makes tidal dynamics an ideal testbed for the **Ψ diagnostic
+framework**.
 
-- Raw tide-gauge data  
-- Construction of reference tidal response `h_eq(t)` 
-- Diagnostic response field **Ψ(t)**  
-- State-space diagnostics of the residual dynamics  
-- Reproducible figures and statistical summaries  
+---
 
-### Running the experiment
+# How to run
 
-From the repository root:
+Clone the repository and install dependencies:
 
 ```bash
+git clone https://github.com/dmitrylife/psi-continuum-experiments.git
+cd psi-continuum-experiments
+
+python3 -m venv sci_venv
+source sci_venv/bin/activate
+
+pip install -r requirements.txt
+```
+
+A minimal demonstrator can be executed with:
+
+```
 python -m tides.scripts.02_run
 ```
-## Outputs
 
-Results are written to:
+This script simply runs the pipeline for a predefined dataset and
+produces example diagnostic figures.
+
+## ⚠️ Note:
+The full experiment pipeline, additional scripts, and detailed
+instructions are documented in:
+
+```
+tides/README.md
+```
+
+---
+
+# Outputs
+
+Experiment outputs are written to:
 
 ```
 tides/artifacts/
 ```
 
-For each station and time window, the pipeline generates:
+Typical diagnostics include:
 
-```
-tides/artifacts/<station>/<window>/
-```
+- tidal response time series
+- state-space trajectories
+- phase diagnostics
+- velocity diagnostics
+- statistical summaries
 
-containing:
+---
 
-- `figures/`
-- `results/`
-
-### Typical diagnostic plots
-
-- `psi_tides.png` — diagnostic field **Ψ(t)** (time series)  
-- `psi_state_space.png` — state-space trajectory  
-- `psi_state_space_density.png` — state-space density / heatmap  
-- `psi_vs_phase.png` — **Ψ** vs tidal phase (scatter)  
-- `psi_vs_phase_binned.png` — mean **⟨Ψ⟩** vs phase (binned)  
-- `psi_vs_dheqdt.png` — **Ψ** vs reference velocity **dh_eq/dt**  
-- `psi_vs_dheqdt_binned.png` — mean **⟨Ψ⟩** vs velocity (binned)  
-
-These diagnostics illustrate how the residual response field Ψ
-depends on tidal phase and reference dynamics.
-
-## Results Summary
+# Results summary
 
 A short overview of the current tidal experiment results is available in:
 
@@ -119,19 +106,18 @@ A short overview of the current tidal experiment results is available in:
 tides/results/summary.md
 ```
 
-This document summarizes:
+# Repository status
 
-- residual statistics  
-- diagnostic plots  
-- interpretation of the **Ψ** response field
+This repository is intended as a **growing collection of
+response-diagnostic experiments**.
 
-## Purpose
+Future experiments may include:
 
-The goal of this repository is to demonstrate how  
-**response-based state-space diagnostics** can reveal hidden structure  
-in macroscopic systems that would otherwise appear as anomalous  
-or acceleration-like behavior.
+- atmospheric oscillations
+- hydrological systems
+- laboratory oscillators
+- additional observational datasets
 
-The tidal experiment serves as a controlled **proof-of-concept**  
-for the **Ψ-Continuum framework** using real observational data.
+Each experiment will be implemented as a reproducible pipeline following
+the same **reference → response → state-space** methodology.
 
