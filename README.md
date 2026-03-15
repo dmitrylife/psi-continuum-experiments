@@ -1,12 +1,17 @@
 # psi-continuum-experiments
 
+## Overview
+
+This repository contains small macroscopic experiments designed to test
+the Ψ-Continuum response framework using real observational data.
+
 > **Companion demonstrations (ongoing)**
 
 This repository collects macroscopic experiments illustrating the
 **Psi-Continuum response framework**.
 
 The goal is to demonstrate how apparent acceleration-like or anomalous
-behavior can emerge in real physical systems as a **global response**,
+behavior may emerge in real physical systems as a **global response**,
 driven by geometry, phase shifts, dissipation, and system memory —
 without introducing new forces or modifying microscopic dynamics.
 
@@ -62,7 +67,7 @@ rather than purely local forces.
 ### What the experiment includes
 
 - Raw tide-gauge data  
-- Construction of reference tidal response \(h_{eq}(t)\)  
+- Construction of reference tidal response `h_eq(t)` 
 - Diagnostic response field **Ψ(t)**  
 - State-space diagnostics of the residual dynamics  
 - Reproducible figures and statistical summaries  
@@ -82,7 +87,7 @@ Results are written to:
 tides/artifacts/
 ```
 
-For each station and each time window, the pipeline generates:
+For each station and time window, the pipeline generates:
 
 ```
 tides/artifacts/<station>/<window>/
@@ -103,8 +108,8 @@ containing:
 - `psi_vs_dheqdt.png` — **Ψ** vs reference velocity **dh_eq/dt**  
 - `psi_vs_dheqdt_binned.png` — mean **⟨Ψ⟩** vs velocity (binned)  
 
-These diagnostics illustrate how the residual response field behaves  
-relative to tidal phase and reference dynamics.
+These diagnostics illustrate how the residual response field Ψ
+depends on tidal phase and reference dynamics.
 
 ## Results Summary
 
