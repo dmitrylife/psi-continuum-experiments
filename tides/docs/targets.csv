@@ -1,0 +1,5 @@
+station,input,start,end
+h293,tides/data/raw/h293.dat.txt,1959-01-01,1959-01-31
+h293,tides/data/raw/h293.dat.txt,1959-02-01,1959-02-28
+h293,tides/data/raw/h293.dat.txt,1959-03-01,1959-03-31
+

@@ -24,6 +24,8 @@ sci_venv/
 *.csv
 *.json
 
+# Исключение для конкретного файла данных
+!experiments/tides/docs/targets.csv
 
 tides/artifacts/
 tides/figures/
